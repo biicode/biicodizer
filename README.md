@@ -85,14 +85,14 @@ $ ...
 
 So boring. **Lets biicodize it**.
 
-First of all, this is the kind of `#include` we want the usres write to use stackie:
+First of all, this is the kind of `#include` we want the users write to use stackie:
 
 ``` cpp
 #include <developer/stackie/stack.hpp>
 
 int main()
 {
-	stk::stack stack;
+    stk::stack stack;
 }
 ```
 
@@ -156,7 +156,7 @@ block:
 
 Most of the biicodization job consists on copying source files to a new location inside the block and update the `#include` directives to take care of that new locations. 
 
-For that purpose, the `biicodize.yml` file uses patterns of the form `[SOURCE] : [DEST]`, where `SOURCE` is a path (File or folder) from your codebase, and `DEST` is its new location relative to the block root directory (Note the `/`). Those paths include the full name, so you can use them to translate them.
+For that purpose, the `biicodize.yml` file uses patterns of the form `[SOURCE] : [DEST]`, where `SOURCE` is a path (File or folder) from your codebase, and `DEST` is its new location relative to the block root directory (Note the `/`). Those paths include the full name, so you can use them to translate and change the file/folder name.
 For example, in the stackie codebase there is a `CMakelists.txt.biicode` file which will act as the cmake file for our block. We named it as `.biicode` to not confuse with a real cmake file for the library. With the translation pattern, we place it in the block renaming the file to `CMakelists.txt` too.
 
 This translation works for folders too, note how the headers are biicodized translating the `include/` folder directly instead of translating each file one per one.
@@ -233,6 +233,6 @@ How can we do that? Easy: `pong.cpp` depends on `assets/pong/`, and `tetris.cpp`
 block:
   data:
     - assets/pong/ -> pong.cpp
-    - assets/tetris -> tetris.cpp
+    - assets/tetris/ -> tetris.cpp
 ```
 

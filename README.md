@@ -6,13 +6,13 @@ A biicode blocks generator
 Why biicodizer?
 ---------------
 
-[biicode]() is a great dependency manager for C and C++. Its cmake based, so taking an existing library and build up a biicode block to deploy the library is not a hard process, since cmake is a well known and widely adopted system for build configuration.  
-Using cmake means your library could be portable simply tunning your sources and your `CMakeLists.txt` properly. And when that works biicode brings you the opportunity of sharing and using the library across multiple platforms in a simple way, just doing `#include <your_biicode_user/your_library/header.hpp>`.
+[biicode]() is a great dependency manager for C and C++. Its CMake based, so taking an existing library and build up a biicode block to deploy the library is not a hard process, since CMake is a well known and widely adopted system for build configuration.  
+Using CMake means your library could be portable simply tunning your sources and your `CMakeLists.txt` properly. And when that works biicode brings you the opportunity of sharing and using the library across multiple platforms in a simple way, just doing `#include <your_biicode_user/your_library/header.hpp>`.
 
 But that *biicodization* process is not always as simple as it could be. 
 
 You should create a block, add the sources of your library, add your custom `CMakeLists.txt` file... A boring and error-prone process done manually and, in most of the cases, which includes copying your sources to the block and adapting the `#include`s across your codebase to work with the biicode `#include <username/block/header.h>` convention.
-So, except you maintain your library entirely as a biicode block, having the biicode block up to date to your library sources means copying sources again. So more manual, boring, and error-prone sources copying and adapting. 
+So, unless you maintain your library entirely as a biicode block, having the biicode block up to date to your library sources means copying sources again. So more manual, boring, and error-prone sources copying and adapting. 
 
 What we propose here is a simple-to-use python script which manages the process, given a block description file written by the developer.
 
@@ -45,7 +45,7 @@ Also the block usually contains a `LICENSE` file, and a `README.md` file, both a
 The biicodization process
 -------------------------
 
-Imagine you have a C++ library called *"stackie"* which provides the most basic data structures ala Standard Library, such as a linked list, an array, a stack, etc. This is your codebase:
+Imagine you have a C++ library called *"stackie"* which provides the most basic data structures *alla* Standard Library, such as a linked list, an array, a stack, etc. This is your codebase:
 
 ```
 +-- stackie
@@ -157,9 +157,9 @@ block:
 Most of the biicodization job consists on copying source files to a new location inside the block and update the `#include` directives to take care of that new locations. 
 
 For that purpose, the `biicodize.yml` file uses patterns of the form `[SOURCE] : [DEST]`, where `SOURCE` is a path (File or folder) from your codebase, and `DEST` is its new location relative to the block root directory (Note the `/`). Those paths include the full name, so you can use them to translate and change the file/folder name.
-For example, in the stackie codebase there is a `CMakelists.txt.biicode` file which will act as the cmake file for our block. We named it as `.biicode` to not confuse with a real cmake file for the library. With the translation pattern, we place it in the block renaming the file to `CMakelists.txt` too.
+For example, in the stackie codebase there is a `CMakelists.txt.biicode` file which will act as the CMake file for our block. We named it as `.biicode` not to be confused with a real CMake file for the library. With the translation pattern, we place it in the block renaming the file to `CMakelists.txt` too.
 
-This translation works for folders too, note how the headers are biicodized translating the `include/` folder directly instead of translating each file one per one.
+This translation works for folders too, note how the headers are biicodized translating the `include/` folder directly instead of translating each file one by one.
 
 Note the second `DEST` field is completely optional. If you write the source only, biicodizer will suppose that the path is exactly the same, but relative to the block root directory. For example:
 
@@ -207,7 +207,7 @@ The syntax is as follows:
 [TRANSLATION PATTERN] -> [FILE/FOLDER]
 ```
 
-Consider an example: An user have written a game engine and deploys it via biicode, and now the same user writes an example block with a simple game. That game uses some assets such as sprites, sound effects, etc.
+Consider an example: A user have written a game engine and deploys it via biicode, and now the same user writes an example block with a simple game. That game uses some assets such as sprites, sound effects, etc.
 
 This is the game structure:
 

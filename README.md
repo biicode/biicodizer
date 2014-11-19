@@ -187,7 +187,7 @@ biicodizer will place both `src/foo.cpp` and `src/bar.cpp` files at `username/bl
 
 Only `username:` and `blockname:` fields are required, others are optional.
 
-### The `source:` entry
+### `source:` entry
 
 `source:` entry does the mapping of your C/C++ source files, with two different subentries `include:` and `src:` for headers and source files respectively.  
 Each subentry contains a list of files specified via translation patterns.
